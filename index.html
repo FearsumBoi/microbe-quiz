@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microbiology Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const quizContainer = document.getElementById("quiz-container");
+            const categoryButtonsContainer = document.getElementById("category-buttons");
+            const questionContainer = document.getElementById("question-container");
+            const feedback = document.getElementById("feedback");
+            const homeButton = document.getElementById("home-button");
+            const nextButton = document.getElementById("next-button");
+
+            if (!quizContainer || !categoryButtonsContainer || !questionContainer || !feedback || !homeButton || !nextButton) {
+                console.error("One or more essential elements are missing from the DOM.");
+                return;
+            }
+
+            const categories = {
+                "Bacteria":[
+                    {
+                        question: "In bacterial chemotaxis, which protein forms a complex with CheY-P to regulate flagellar motor rotation?",
+                        options: ["CheA", "CheW", "FliM", "CheZ"],
+                        answer: "FliM"
+                    },
+                    {
+                        question: "In prokaryotic ribosomes, the peptidyl transferase activity is carried out by which molecular component?",
+                        options: ["5S rRNA in the 30S ribosomal subunit", "23S rRNA in the 50S ribosomal subunit", "16S rRNA in the 30S ribosomal subunit", "tRNA molecule in the A site"],
+                        answer: "23S rRNA in the 50S ribosomal subunit"
+                    }
+
+                ],
+                "Microscopy": [
+                    {
+                        question: "Which microscope is best for viewing the surface structure of bacteria?",
+                        options: ["Transmission Electron Microscope (TEM)", "Scanning Electron Microscope (SEM)", "Fluorescence Microscope", "Phase Contrast Microscope"],
+                        answer: "Scanning Electron Microscope (SEM)"
+                    },
+                    {
+                        question: "Who was the first to observe microorganisms with a microscope?",
+                        options: ["Antonie van Leeuwenhoek", "Robert Hooke", "Louis Pasteur", "Robert Koch"],
+                        answer: "Antonie van Leeuwenhoek"
+                    },
+                    {
+                        question: "Which of the following is not a type of pump commonly used in TEM?",
+                        options:["Drum pump", "Roughing pump", "Turbo pump", "Ion pump"],
+                        answer:"Drum pump"
+                    },
+                    {
+                        question: "The numerical aperture (NA) of an objective lens is 0.95. Using light with a wavelength of 550 nm, what is the approximate theoretical resolution of the lens?",
+                        options: ["290nm", "550nm", "579nm", "125nm"],
+                        answer: "290nm"
+                    }
+                ],
+                "Genetics": [
+                    {
+                        question: "What is the primary function of the lac operon?",
+                        options: ["Regulation of lactose metabolism", "DNA replication", "Protein synthesis", "Cell division"],
+                        answer: "Regulation of lactose metabolism"
+                    },
+                    {
+                        question: "Which structure contains genes for enzymes and antibiotic resistance?",
+                        options: ["Plasmid", "Pilus", "Capsule", "Plasma membrane"],
+                        answer: "Plasmid"
+                    },
+                    {
+                        question: "DNA methylation, in the context of epigenetics, typical leads to:",
+                        options:["Transcriptional repression", "Enhanced transcription", "Post-translational modification of proteins", "Activation of RNA interference" ],
+                        answer: "Transcriptional repression"
+                    },
+                    {
+                        question: "What is the role of luciferase in recombinant plasmid biotechnology",
+                        options:["serve as protein for bioluminescence to visualize plasmid", "denature lucifer functional groups", "region in polylinker site", "serve as a reporter gene"],
+                        answer: "serve as a reporter gene"
+                    },
+                    {
+                        question: "What is the eukaryote analgous of the Shine-Dalgarno Sequence",
+                        options: ["TATA Box", "Kozak Sequence", "Pribnow Box", "Leeuwenhoek sequence"],
+                        answer: "Kozak Sequence"
+                    }
+        
+                ],
+                "Staining Techniques": [
+                    {
+                        question: "What is the counterstain used in Gram staining?",
+                        options: ["Ethanol", "Safranin", "Fe2O3", "HCl"],
+                        answer: "Safranin"
+                    },
+                    {
+                        question: "Which staining technique is used to identify Mycobacterium species?",
+                        options: ["Gram stain", "Acid-fast stain", "Endospore stain", "Capsule stain"],
+                        answer: "Acid-fast stain"
+                    }
+                ],
+                "Metabolism": [
+                    {
+                        question: "Which metabolic process allows cyanobacteria to produce biofuels?",
+                        options: ["Anaerobic respiration", "Glycolysis", "Photosynthesis", "Tricarboxylic acid cycle"],
+                        answer: "Photosynthesis"
+                    },
+                    {
+                        question: "What is the main purpose of the Krebs cycle in metabolism?",
+                        options: ["ATP production", "Oxygen storage", "Fat synthesis", "Water generation"],
+                        answer: "ATP production"
+                    },
+                    {
+                        question: "Catabolite repression in bacteria refers to the suppression of certain metabolic pathways in the presence of what preferred energy source?",
+                        options: ["Glucose", "Lactose", "Fructose", "Sucrose"],
+                        answer: "Glucose"
+                    }
+                ],
+                "Pathogenesis": [
+                    {
+                        question: "Which class of antibiotics targets bacterial cell wall synthesis and includes penicillin?",
+                        options: ["Tetracyclines", "Beta-lactams", "Fluoroquinolones", "Macrolides"],
+                        answer: "Beta-lactams"
+                    },
+                    {
+                        question: "Which pathogen causes tuberculosis?",
+                        options: ["Streptococcus pneumoniae", "Mycobacterium tuberculosis", "Escherichia coli", "Salmonella enterica"],
+                        answer: "Mycobacterium tuberculosis"
+                    }
+                ]
+            };
+
+            let selectedCategory = null;
+            let currentQuestionIndex = 0;
+            let score = 0;
+
+            // Dynamically generate category buttons
+            function loadCategories() {
+                categoryButtonsContainer.innerHTML = ""; // Clear existing buttons
+                Object.keys(categories).forEach(category => {
+                    const button = document.createElement("button");
+                    button.innerText = category;
+                    button.className = "bg-blue-500 text-white py-2 px-4 rounded";
+                    button.addEventListener("click", () => {
+                        selectedCategory = category;
+                        startQuiz();
+                    });
+                    categoryButtonsContainer.appendChild(button);
+                });
+            }
+
+            
+            function startQuiz() {
+                function shuffleQuestions(questions) {
+                    return questions.sort(() => Math.random() - 0.5);
+                }
+                if (!categories[selectedCategory]) {
+                    console.error("Selected category does not exist.");
+                    return;
+                }
+                categories[selectedCategory] = shuffleQuestions([...categories[selectedCategory]]);
+                quizContainer.classList.add("hidden");
+                questionContainer.classList.remove("hidden");
+                homeButton.classList.remove("hidden");
+                nextButton.classList.add("hidden");
+                categories[selectedCategory] = shuffleQuestions([...categories[selectedCategory]]);
+                showQuestion();
+            }
+
+            function showQuestion() {
+                if (currentQuestionIndex >= categories[selectedCategory].length) {
+                    feedback.innerText = `Quiz completed! Your score: ${score}`;
+                    feedback.classList.remove("hidden");
+                    questionContainer.classList.add("hidden");
+                    nextButton.classList.add("hidden");
+                    homeButton.innerText = "Restart";
+                    return;
+                }
+                const questionData = categories[selectedCategory][currentQuestionIndex];
+                questionContainer.querySelector("h2").innerText = questionData.question;
+                const buttons = questionContainer.querySelectorAll(".grid button");
+
+                // Reset button styles before showing a new question
+                buttons.forEach((btn, index) => {
+                    btn.innerText = questionData.options[index];
+                    btn.classList.remove("bg-green-500", "bg-red-500"); // Reset colors
+                    btn.onclick = () => checkAnswer(btn, questionData.options[index]);
+                });
+            }
+
+            function checkAnswer(button, selected) {
+                const questionData = categories[selectedCategory][currentQuestionIndex];
+
+                if (selected === questionData.answer) {
+                    feedback.innerText = "Correct!";
+                    feedback.classList.remove("hidden", "text-red-500");
+                    feedback.classList.add("text-green-500");
+                    button.classList.add("bg-green-500"); // ✅ Turn green if correct
+                    nextButton.classList.remove("hidden");
+                    score++;
+                } else {
+                    feedback.innerText = `Incorrect. The correct answer is ${questionData.answer}.`;
+                    feedback.classList.remove("hidden", "text-green-500");
+                    feedback.classList.add("text-red-500");
+                    button.classList.add("bg-red-500"); // ❌ Turn red if incorrect
+                    nextButton.classList.add("hidden");
+                }
+            }
+
+            nextButton.addEventListener("click", () => {
+                currentQuestionIndex++;
+                showQuestion();
+                feedback.classList.add("hidden");
+                nextButton.classList.add("hidden");
+            });
+
+            homeButton.addEventListener("click", () => {
+                currentQuestionIndex = 0;
+                score = 0;
+                quizContainer.classList.remove("hidden");
+                questionContainer.classList.add("hidden");
+                feedback.classList.add("hidden");
+                nextButton.classList.add("hidden");
+                homeButton.classList.add("hidden");
+                homeButton.innerText = "Home"; // Reset the button text
+                loadCategories(); // Reload categories on home
+            });
+
+            // Load categories on page load
+            loadCategories();
+        });
+    </script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div class="w-full bg-blue-600 text-white text-center py-4 shadow-lg fixed top-0 left-0 right-0 z-10">
+        <h1 class="text-2xl font-bold">Microbe Quiz</h1>
+    </div>
+    
+    <div id="quiz-container" class="w-full max-w-lg p-6 text-center bg-white shadow-lg rounded-lg mt-20">
+        <h2 class="text-xl font-bold mb-4">Select a Category</h2>
+        <div id="category-buttons" class="grid gap-2"></div>
+    </div>
+
+    <div id="question-container" class="hidden w-full max-w-lg p-6 text-center bg-white shadow-lg rounded-lg mt-20">
+        <h2 class="text-xl font-bold mb-4">Question</h2>
+        <div class="grid gap-2">
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 1</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 2</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 3</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 4</button>
+        </div>
+    </div>
+
+    <div id="feedback" class="hidden text-center mt-4"></div>
+    <button id="next-button" class="hidden bg-green-500 text-white py-2 px-4 rounded mt-4">Next Question</button>
+    <button id="home-button" class="hidden bg-blue-500 text-white py-2 px-4 rounded mt-4">Home</button>
+</body>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div class="w-full bg-blue-600 text-white text-center py-4 shadow-lg fixed top-0 left-0 right-0 z-10 flex justify-between px-6">
+        <h1 class="text-2xl font-bold">Microbe Quiz</h1>
+        <a href="about.html" class="text-white text-lg">About</a>
+    </div>
+</body>
+</html>
