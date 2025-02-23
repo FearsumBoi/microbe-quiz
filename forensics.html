@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- Import Roboto from Google Fonts -->
+ <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Forensics Quiz - Forensics Page</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script>
+   document.addEventListener("DOMContentLoaded", function () {
+     const quizContainer = document.getElementById("quiz-container");
+     const categoryButtonsContainer = document.getElementById("category-buttons");
+     const questionContainer = document.getElementById("question-container");
+    
+     // Create and append feedback, homeButton, nextButton if they don't exist
+     let feedback = document.getElementById("feedback");
+     if(!feedback){
+       feedback = document.createElement("div");
+       feedback.id = "feedback";
+       feedback.className = "hidden text-center mt-4";
+       document.body.appendChild(feedback);
+     }
+    
+     let homeButton = document.getElementById("home-button");
+     if(!homeButton){
+       homeButton = document.createElement("button");
+       homeButton.id = "home-button";
+       homeButton.className = "hidden bg-green-500 text-white py-2 px-4 rounded mt-4";
+       homeButton.innerText = "Home";
+       document.body.appendChild(homeButton);
+     }
+    
+     let nextButton = document.getElementById("next-button");
+     if(!nextButton){
+       nextButton = document.createElement("button");
+       nextButton.id = "next-button";
+       nextButton.className = "hidden bg-green-500 text-white py-2 px-4 rounded mt-4";
+       nextButton.innerText = "Next Question";
+       document.body.appendChild(nextButton);
+     }
+    
+     const categories = {
+       "Fingerprint Analysis": [
+         {
+           question: "Which fingerprint pattern is the most common?",
+           options: ["Loop", "Whorl", "Arch", "Tented Arch"],
+           answer: "Loop",
+         },
+         {
+           question: "What chemical is used to detect latent fingerprints on porous surfaces?",
+           options: ["Ninhydrin", "Superglue Fuming", "Iodine Fuming", "Silver Nitrate"],
+           answer: "Ninhydrin",
+         }
+       ],
+       "DNA Analysis": [
+         {
+           question: "Which type of DNA is inherited only from the mother?",
+           options: ["Nuclear DNA", "Mitochondrial DNA", "Y-Chromosome DNA", "Autosomal DNA"],
+           answer: "Mitochondrial DNA",
+         },
+         {
+           question: "What is the technique used to amplify DNA samples?",
+           options: ["PCR", "RFLP", "STR Analysis", "Electrophoresis"],
+           answer: "PCR",
+         }
+       ],
+       "Soil": [
+         {
+           question: "What is the first step a forensic scientist might take when analyzing soil evidence?",
+           options: ["Microscopic examination", "DNA testing", "Density gradient analysis", "pH testing"],
+           answer: "Microscopic examination",
+         },
+         {
+           question: "Soil composition can help link a suspect to a crime scene based on differences in?",
+           options: ["Humidity", "Temperature", "Texture and mineral content", "Geographic latitude"],
+           answer: "Texture and mineral content",
+         }
+       ],
+       "Tracks": [
+         {
+           question: "Which method is commonly used to cast shoe impressions at a crime scene?",
+           options: ["Dental stone or plaster", "Hot wax", "Resin composite", "Acrylic paint"],
+           answer: "Dental stone or plaster",
+         },
+         {
+           question: "Tire track evidence can be crucial because it can indicate a vehicle's?",
+           options: ["Wheel alignment only", "Make, model, and sometimes unique wear patterns", "Color", "Engine size"],
+           answer: "Make, model, and sometimes unique wear patterns",
+         }
+       ],
+       "Ballistics": [
+         {
+           question: "Forensic ballistics primarily involves the examination of?",
+           options: ["Fingerprints left on a gun", "Firearms, bullets, and cartridge cases", "Gunshot residue in the atmosphere", "All bulletproof vests"],
+           answer: "Firearms, bullets, and cartridge cases",
+         },
+         {
+           question: "What is the term used to describe the unique markings on a bullet after it's been fired?",
+           options: ["Striations", "Fissures", "Indentations", "Perforations"],
+           answer: "Striations",
+         }
+       ],
+       "Blood": [
+         {
+           question: "What test is commonly used at crime scenes to detect the presence of blood?",
+           options: ["Phenolphthalein (Kastle-Meyer) test", "Luminol test", "Hemastix", "All of the above"],
+           answer: "All of the above",
+         },
+         {
+           question: "Blood spatter analysis can determine?",
+           options: ["The weapon used", "The point of origin and angle of impact", "The time of day of the incident", "DNA of the victim"],
+           answer: "The point of origin and angle of impact",
+         }
+       ],
+       "Fibers": [
+         {
+           question: "Which type of microscope is commonly used to analyze fiber evidence?",
+           options: ["Stereo microscope", "Comparison microscope", "Phase contrast microscope", "Scanning electron microscope"],
+           answer: "Comparison microscope",
+         },
+         {
+           question: "Natural fibers include which of the following?",
+           options: ["Wool and cotton", "Polyester and nylon", "Rayon and acetate", "Polyester and wool"],
+           answer: "Wool and cotton",
+         }
+       ],
+       "Hair": [
+         {
+           question: "The three main parts of a hair shaft used in forensic analysis are?",
+           options: ["Cuticle, cortex, and medulla", "Root, bulb, and shaft", "Follicle, keratin, and color", "Capillary, shaft, and follicle"],
+           answer: "Cuticle, cortex, and medulla",
+         },
+         {
+           question: "Forensic hair analysis can help determine?",
+           options: ["Exact age of the person", "Blood type", "Racial characteristics and whether hair was forcibly removed", "Exact time of hair growth"],
+           answer: "Racial characteristics and whether hair was forcibly removed",
+         }
+       ]
+     };
+
+
+     let selectedCategory = null;
+     let currentQuestionIndex = 0;
+     let score = 0;
+
+
+     function loadCategories() {
+       categoryButtonsContainer.innerHTML = "";
+       Object.keys(categories).forEach((category) => {
+         const button = document.createElement("button");
+         button.innerText = category;
+         button.className = "bg-green-500 text-white py-2 px-4 rounded";
+         button.addEventListener("click", () => {
+           selectedCategory = category;
+           startQuiz();
+         });
+         categoryButtonsContainer.appendChild(button);
+       });
+     }
+
+
+     function startQuiz() {
+       function shuffleQuestions(questions) {
+         return questions.sort(() => Math.random() - 0.5);
+       }
+       if (!categories[selectedCategory]) {
+         console.error("Selected category does not exist.");
+         return;
+       }
+       categories[selectedCategory] = shuffleQuestions([...categories[selectedCategory]]);
+       quizContainer.classList.add("hidden");
+       questionContainer.classList.remove("hidden");
+       homeButton.classList.remove("hidden");
+       nextButton.classList.add("hidden");
+       showQuestion();
+     }
+
+
+     function showQuestion() {
+       if (currentQuestionIndex >= categories[selectedCategory].length) {
+         feedback.innerText = `Quiz completed! Your score: ${score}`;
+         feedback.classList.remove("hidden");
+         questionContainer.classList.add("hidden");
+         nextButton.classList.add("hidden");
+         homeButton.innerText = "Restart";
+         return;
+       }
+       const questionData = categories[selectedCategory][currentQuestionIndex];
+       questionContainer.querySelector("h2").innerText = questionData.question;
+       const buttons = questionContainer.querySelectorAll(".grid button");
+
+
+       buttons.forEach((btn, index) => {
+         btn.innerText = questionData.options[index];
+         // Remove old color classes
+         btn.classList.remove("bg-green-500", "bg-red-500");
+         // Use green as the default button color
+         btn.classList.add("bg-green-500");
+         btn.onclick = () => checkAnswer(btn, questionData.options[index]);
+       });
+     }
+
+
+     function checkAnswer(button, selected) {
+       const questionData = categories[selectedCategory][currentQuestionIndex];
+       // Reset feedback text color
+       feedback.classList.remove("text-green-500", "text-red-500");
+
+
+       if (selected === questionData.answer) {
+         feedback.innerText = "Correct!";
+         feedback.classList.add("text-green-500");
+         button.classList.remove("bg-green-500");
+         button.classList.add("bg-green-700");
+         nextButton.classList.remove("hidden");
+         score++;
+       } else {
+         feedback.innerText = `Incorrect. The correct answer is ${questionData.answer}.`;
+         feedback.classList.add("text-red-500");
+         button.classList.remove("bg-green-500");
+         button.classList.add("bg-red-500");
+         nextButton.classList.add("hidden");
+       }
+       feedback.classList.remove("hidden");
+     }
+
+
+     nextButton.addEventListener("click", () => {
+       currentQuestionIndex++;
+       showQuestion();
+       feedback.classList.add("hidden");
+       nextButton.classList.add("hidden");
+     });
+
+
+     homeButton.addEventListener("click", () => {
+       currentQuestionIndex = 0;
+       score = 0;
+       quizContainer.classList.remove("hidden");
+       questionContainer.classList.add("hidden");
+       feedback.classList.add("hidden");
+       nextButton.classList.add("hidden");
+       homeButton.classList.add("hidden");
+       homeButton.innerText = "Home";
+       loadCategories();
+     });
+
+
+     loadCategories();
+   });
+ </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 pt-32" style="font-family: 'Roboto', sans-serif;">
+ <!-- Navigation Bar -->
+ <div class="w-full bg-gray-600 text-white py-4 shadow-lg fixed top-0 left-0 right-0 z-10">
+   <div class="flex w-full px-6 items-center">
+     <!-- Left side: Title -->
+     <div class="flex-1">
+       <h1 class="text-2xl font-bold">Forensics Quiz</h1>
+     </div>
+     <!-- Center side: Microbe, Codebusters, AnP, Forensics -->
+     <div class="flex-1 flex justify-center space-x-4">
+       <a href="index.html" class="bg-yellow-600 text-white text-lg px-3 py-1 rounded hover:bg-yellow-700">Microbe</a>
+       <a href="codebusters.html" class="bg-purple-600 text-white text-lg px-3 py-1 rounded hover:bg-purple-700">Codebusters</a>
+       <a href="AnP.html" class="bg-pink-600 text-white text-lg px-3 py-1 rounded hover:bg-pink-700">AnP</a>
+       <!-- Forensics tab is the current page, so disable link -->
+       <a href="#" onclick="return false;" class="bg-green-600 text-white text-lg px-3 py-1 rounded cursor-not-allowed opacity-75">Forensics</a>
+     </div>
+     <!-- Right side: About -->
+     <div class="flex-1 flex justify-end">
+       <a href="about.html" class="text-white text-lg">About</a>
+     </div>
+   </div>
+ </div>
+
+
+ <!-- Main Quiz Container -->
+ <div id="quiz-container" class="w-full max-w-lg p-6 text-center bg-white shadow-lg rounded-lg">
+   <h2 class="text-xl font-bold mb-4">Select a Category</h2>
+   <div id="category-buttons" class="grid gap-2"></div>
+ </div>
+
+
+ <!-- Question Container -->
+ <div id="question-container" class="hidden w-full max-w-lg p-6 text-center bg-white shadow-lg rounded-lg">
+   <h2 class="text-2xl font-bold mb-6">Question</h2>
+   <div class="grid gap-2">
+     <button class="bg-green-500 text-white py-2 px-4 rounded">Option 1</button>
+     <button class="bg-green-500 text-white py-2 px-4 rounded">Option 2</button>
+     <button class="bg-green-500 text-white py-2 px-4 rounded">Option 3</button>
+     <button class="bg-green-500 text-white py-2 px-4 rounded">Option 4</button>
+   </div>
+ </div>
+</body>
+</html>
