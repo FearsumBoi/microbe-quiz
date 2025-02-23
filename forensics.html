@@ -4,7 +4,6 @@
  <!-- Import Roboto from Google Fonts -->
  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  <title>Forensics Quiz - Forensics Page</title>
@@ -141,11 +140,9 @@
        ]
      };
 
-
      let selectedCategory = null;
      let currentQuestionIndex = 0;
      let score = 0;
-
 
      function loadCategories() {
        categoryButtonsContainer.innerHTML = "";
@@ -160,7 +157,6 @@
          categoryButtonsContainer.appendChild(button);
        });
      }
-
 
      function startQuiz() {
        function shuffleQuestions(questions) {
@@ -178,7 +174,6 @@
        showQuestion();
      }
 
-
      function showQuestion() {
        if (currentQuestionIndex >= categories[selectedCategory].length) {
          feedback.innerText = `Quiz completed! Your score: ${score}`;
@@ -192,41 +187,36 @@
        questionContainer.querySelector("h2").innerText = questionData.question;
        const buttons = questionContainer.querySelectorAll(".grid button");
 
-
+       // Re-initialize each button's style & text for the new question
        buttons.forEach((btn, index) => {
+         // Set each button to the default green-500
+         btn.className = "bg-green-500 text-white py-2 px-4 rounded";
          btn.innerText = questionData.options[index];
-         // Remove old color classes
-         btn.classList.remove("bg-green-500", "bg-red-500");
-         // Use green as the default button color
-         btn.classList.add("bg-green-500");
          btn.onclick = () => checkAnswer(btn, questionData.options[index]);
        });
      }
-
 
      function checkAnswer(button, selected) {
        const questionData = categories[selectedCategory][currentQuestionIndex];
        // Reset feedback text color
        feedback.classList.remove("text-green-500", "text-red-500");
 
-
        if (selected === questionData.answer) {
          feedback.innerText = "Correct!";
          feedback.classList.add("text-green-500");
-         button.classList.remove("bg-green-500");
-         button.classList.add("bg-green-700");
+         // Turn correct answer button dark green
+         button.className = "bg-green-700 text-white py-2 px-4 rounded";
          nextButton.classList.remove("hidden");
          score++;
        } else {
          feedback.innerText = `Incorrect. The correct answer is ${questionData.answer}.`;
          feedback.classList.add("text-red-500");
-         button.classList.remove("bg-green-500");
-         button.classList.add("bg-red-500");
+         // Turn incorrect answer button red
+         button.className = "bg-red-500 text-white py-2 px-4 rounded";
          nextButton.classList.add("hidden");
        }
        feedback.classList.remove("hidden");
      }
-
 
      nextButton.addEventListener("click", () => {
        currentQuestionIndex++;
@@ -234,7 +224,6 @@
        feedback.classList.add("hidden");
        nextButton.classList.add("hidden");
      });
-
 
      homeButton.addEventListener("click", () => {
        currentQuestionIndex = 0;
@@ -247,7 +236,6 @@
        homeButton.innerText = "Home";
        loadCategories();
      });
-
 
      loadCategories();
    });
