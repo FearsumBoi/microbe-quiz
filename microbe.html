@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scioly Quiz - Microbe Page</title>
+  <!-- Import Roboto from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="microbeStyle.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 pt-32" style="font-family: 'Roboto', sans-serif;">
+  <!-- Dark top bar -->
+  <div class="w-full bg-gray-800 text-white py-4 shadow-lg fixed top-0 left-0 right-0 z-10">
+    <div class="flex w-full items-center justify-center relative main-title">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 .587l3.668 7.431 8.209 1.193-5.938 5.79 1.403 8.175L12 18.896l-7.342 3.88 1.403-8.175L.123 9.211l8.21-1.193z"/>
+      </svg>
+      <h1 class="text-2xl font-bold">SCIOLY QUIZ- Microbe Page</h1>
+      <div class="absolute right-6">
+        <a href="about.html" class="text-white text-lg hover:underline">About</a>
+      </div>
+    </div>
+  </div>
+  <!-- Secondary top bar -->
+  <div class="w-full bg-gray-700 text-white py-2 shadow-lg fixed top-14 left-0 right-0 z-10">
+    <div class="flex w-full px-6 items-center justify-center space-x-4">
+      <a href="forensics.html" class="bg-green-600 text-white text-lg px-3 py-1 rounded hover:bg-green-700">
+        Forensics
+      </a>
+      <a href="https://cryptograms.puzzlebaron.com/" class="bg-purple-600 text-white text-lg px-3 py-1 rounded hover:bg-purple-700" target="_blank" rel="noopener noreferrer">
+        Codebusters
+      </a>
+      <a href="AnP.html" class="bg-pink-600 text-white text-lg px-3 py-1 rounded hover:bg-pink-700">
+        AnP
+      </a>
+      <a href="#" onclick="return false;" class="bg-yellow-600 text-white text-lg px-3 py-1 rounded cursor-not-allowed opacity-75">
+        Microbe
+      </a>
+    </div>
+  </div>
+  <!-- Quiz Container (Category Selection) -->
+  <div id="quiz-container" class="enhanced-container w-full max-w-lg p-6 text-center shadow-lg mt-4">
+    <h2 class="text-xl font-bold mb-4">Select a Category</h2>
+    <div id="category-buttons" class="grid gap-2"></div>
+  </div>background: linear-gradient(to bottom right, #cce0cc, #007400);
+  <!-- Question Container -->
+  <div id="question-container" class="enhanced-container hidden w-full max-w-lg p-6 text-center shadow-lg mt-4">
+    <h2 class="text-2xl font-bold mb-6">Question</h2>
+    <img id="question-image" src="" alt="Question Image" class="hidden w-full max-w-sm mx-auto mb-4 rounded"/>
+    <div class="grid gap-2">
+      <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 1</button>
+      <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 2</button>
+      <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 3</button>
+      <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 4</button>
+    </div>
+    <div id="feedback" class="hidden text-center"></div>
+    <div id="explanation-container"></div>
+    <button id="explanation-button" class="hidden bg-gray-500 text-white py-2 px-4 rounded mt-4">Show Explanation</button>
+    <button id="next-button" class="hidden bg-green-500 text-white py-2 px-4 rounded mt-4">Next Question</button>
+    <button id="home-button" class="hidden bg-blue-500 text-white py-2 px-4 rounded mt-4">Home</button>
+  </div>
+  <!-- Include the scripts in order -->
+  <script src="microbeData.js"></script>
+  <script src="microbeQuiz.js"></script>
+</body>
+</html>
