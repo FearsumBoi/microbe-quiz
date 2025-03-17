@@ -11,60 +11,99 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 pt-32 bg-gradient-to-r from-green-700 via-green-800 to-green-900" style="font-family: 'Roboto', sans-serif;">
-  <!-- Dark top bar -->
-  <div class="w-full bg-gray-800 text-white py-3 shadow-lg fixed top-0 left-0 right-0 z-20">
-    <div class="flex w-full items-center justify-center relative main-title">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 .587l3.668 7.431 8.209 1.193-5.938 5.79 1.403 8.175L12 18.896l-7.342 3.88 1.403-8.175L.123 9.211l8.21-1.193z"/>
-      </svg>
-      <h1 class="text-2xl font-bold">SCIOLY QUIZ- Forensics Page</h1>
-      <div class="absolute right-6">
-        <a href="about.html" class="text-white text-lg hover:underline">About</a>
+<body class="min-h-screen flex flex-col bg-white text-gray-900" style="font-family: 'Roboto', sans-serif;">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="w-full border-b border-gray-700">
+    <div class="max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Left side: logo + site title -->
+      <div class="flex items-center space-x-3">
+        <!-- Logo/Icon -->
+        <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.431 8.209 1.193-5.938 5.79 
+                   1.403 8.175L12 18.896l-7.342 3.88 
+                   1.403-8.175L.123 9.211l8.21-1.193z"/>
+        </svg>
+        <h1 class="text-xl font-bold">SCIOLY QUIZ</h1>
+      </div>
+
+      <!-- Center Nav: Microbe, Codebusters, AnP, Forensics -->
+      <nav class="flex-1 ml-8">
+        <ul class="flex items-center space-x-6">
+          <li>
+            <a href="microbe.html" class="hover:text-gray-700">Microbe</a>
+          </li>
+          <li>
+            <a href="https://cryptograms.puzzlebaron.com/" class="hover:text-gray-700" target="_blank" rel="noopener noreferrer">
+              Codebusters
+            </a>
+          </li>
+          <li>
+            <a href="AnP.html" class="hover:text-gray-700">AnP</a>
+          </li>
+          <li>
+            <!-- Forensics is inactive/click-disabled -->
+            <span class="text-gray-500 cursor-not-allowed">Forensics</span>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right side: About link -->
+      <div>
+        <a href="about.html" class="hover:text-gray-700">About</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Secondary top bar -->
-  <div class="w-full bg-gray-700 text-white py-2 shadow-lg fixed top-14 left-0 right-0 z-10">
-    <div class="flex w-full px-6 items-center justify-center space-x-4">
-      <a href="microbe.html" class="bg-yellow-600 text-white text-lg px-3 py-1 rounded hover:bg-yellow-700">
-        Microbe
-      </a>
-      <a href="https://cryptograms.puzzlebaron.com/" class="bg-purple-600 text-white text-lg px-3 py-1 rounded hover:bg-purple-700" target="_blank" rel="noopener noreferrer">
-        Codebusters
-      </a>
-      <a href="AnP.html" class="bg-pink-600 text-white text-lg px-3 py-1 rounded hover:bg-pink-700">
-        AnP
-      </a>
-      <a href="#" onclick="return false;" class="bg-green-700 text-white text-lg px-3 py-1 rounded cursor-not-allowed opacity-75">
-        Forensics
-      </a>
+  <!-- HERO / FEATURED SECTION (Optional) -->
+  <section class="text-center py-12 bg-gray-100">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4">Forensics Quiz!</h2>
+      <p class="text-lg text-gray-600">Test your knowledge on various forensics topics.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- Quiz Container (Category Selection) -->
-  <div id="quiz-container" class="enhanced-container w-full max-w-lg p-6 text-center shadow-lg mt-24">
-    <h2 class="text-xl font-bold mb-4">Select a Category</h2>
-    <div id="category-buttons" class="grid gap-2"></div>
-  </div>
-
-  <!-- Question Container -->
-  <div id="question-container" class="enhanced-container hidden w-full max-w-lg p-6 text-center shadow-lg mt-4">
-    <h2 class="text-2xl font-bold mb-6">Question</h2>
-    <img id="question-image" src="" alt="Question Image" class="hidden w-full max-w-sm mx-auto mb-4 rounded"/>
-    <div class="grid gap-2">
-      <button class="bg-green-500 text-white py-2 px-4 rounded">Option 1</button>
-      <button class="bg-green-500 text-white py-2 px-4 rounded">Option 2</button>
-      <button class="bg-green-500 text-white py-2 px-4 rounded">Option 3</button>
-      <button class="bg-green-500 text-white py-2 px-4 rounded">Option 4</button>
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-grow flex flex-col items-center py-6 px-4">
+    <!-- Quiz Container (Category Selection) -->
+    <div id="quiz-container" class="enhanced-container w-full max-w-lg p-6 text-center shadow-lg mb-6">
+      <h2 class="text-xl font-bold mb-4">Select a Category</h2>
+      <div id="category-buttons" class="grid gap-2"></div>
     </div>
-    <div id="feedback" class="hidden text-center"></div>
-    <div id="explanation-container"></div>
-    <button id="explanation-button" class="hidden bg-gray-500 text-white py-2 px-4 rounded mt-4">Show Explanation</button>
-    <button id="next-button" class="hidden bg-green-500 text-white py-2 px-4 rounded mt-4">Next Question</button>
-    <button id="home-button" class="hidden bg-blue-500 text-white py-2 px-4 rounded mt-4">Home</button>
-  </div>
+
+    <!-- Question Container -->
+    <div id="question-container" class="enhanced-container hidden w-full max-w-lg p-6 text-center shadow-lg">
+      <h2 class="text-2xl font-bold mb-6">Question</h2>
+      <img 
+        id="question-image" 
+        src="" 
+        alt="Question Image" 
+        class="hidden w-full max-w-sm mx-auto mb-4 rounded"
+      />
+      <div class="grid gap-2">
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 1</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 2</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 3</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Option 4</button>
+      </div>
+      <div id="feedback" class="hidden text-center"></div>
+      <div id="explanation-container"></div>
+      <button id="explanation-button" class="hidden bg-gray-500 text-white py-2 px-4 rounded mt-4">
+        Show Explanation
+      </button>
+      <button id="next-button" class="hidden bg-green-500 text-white py-2 px-4 rounded mt-4">
+        Next Question
+      </button>
+      <button id="home-button" class="hidden bg-blue-500 text-white py-2 px-4 rounded mt-4">
+        Home
+      </button>
+    </div>
+  </main>
+
+  <!-- FOOTER (Optional) -->
+  <footer class="border-t border-gray-300 py-4 text-center">
+    <p class="text-sm text-gray-500">&copy; 2025 Scioly Quiz</p>
+  </footer>
 
   <!-- Load Forensics Data first, then Quiz Logic -->
   <script src="quizData.js"></script>
