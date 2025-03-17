@@ -136,7 +136,8 @@ const categories = {
     {
         question: "Which metabolic process allows cyanobacteria to produce biofuels?",
         options: ["Anaerobic respiration", "Glycolysis", "Photosynthesis", "Tricarboxylic acid cycle"],
-        answer: "Photosynthesis"
+        answer: "Photosynthesis",
+        explanation: "Cyanobacteria produce biofuels through photosynthesis and metabolic engineering, converting carbon dioxide and sunlight into organic compounds like sugars, which can then be further processed into biofuels like ethanol or butanol."
     },
     {
         question: "What is the main purpose of the Krebs cycle in metabolism?",
