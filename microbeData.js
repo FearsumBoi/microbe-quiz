@@ -37,7 +37,7 @@ const categories = {
     {
         question: "Which sterilization method is best for air purification?",
         options: ["Autoclaving", "Chemical sterilization", "Ultraviolet Radiation", "Filtration"],
-        answer: "Filtration"
+        answer: "Ultraviolet Radiation"
     },
     {
         question: "Horizontal gene transfer via lysogenic viruses is known as?",
