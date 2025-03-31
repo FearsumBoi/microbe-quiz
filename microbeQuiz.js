@@ -1,41 +1,30 @@
-// microbeQuiz.js
-
 document.addEventListener("DOMContentLoaded", function () {
-  const quizContainer = document.getElementById("quiz-container");
-  const categoryButtonsContainer = document.getElementById("category-buttons");
-  const questionContainer = document.getElementById("question-container");
-  const feedback = document.getElementById("feedback");
-  const homeButton = document.getElementById("home-button");
-  const nextButton = document.getElementById("next-button");
-  const explanationButton = document.getElementById("explanation-button");
-  const explanationBox = document.getElementById("explanation-container");
-  const questionImage = document.getElementById("question-image");
+  const quizContainer = document.getElementById("quiz-container"),
+        categoryButtonsContainer = document.getElementById("category-buttons"),
+        questionContainer = document.getElementById("question-container"),
+        feedback = document.getElementById("feedback"),
+        homeButton = document.getElementById("home-button"),
+        nextButton = document.getElementById("next-button"),
+        explanationButton = document.getElementById("explanation-button"),
+        explanationBox = document.getElementById("explanation-container"),
+        questionImage = document.getElementById("question-image");
 
-  if (
-    !quizContainer ||
-    !categoryButtonsContainer ||
-    !questionContainer ||
-    !feedback ||
-    !homeButton ||
-    !nextButton ||
-    !explanationButton ||
-    !explanationBox ||
-    !questionImage
-  ) {
+  if (!quizContainer || !categoryButtonsContainer || !questionContainer || !feedback ||
+      !homeButton || !nextButton || !explanationButton || !explanationBox || !questionImage) {
     console.error("One or more essential elements are missing from the DOM.");
     return;
   }
 
-  let selectedCategory = null;
-  let currentQuestionIndex = 0;
-  let score = 0;
+  let selectedCategory = null,
+      currentQuestionIndex = 0,
+      score = 0;
 
   function loadCategories() {
     categoryButtonsContainer.innerHTML = "";
-    Object.keys(categories).forEach((category) => {
+    Object.keys(categories).forEach(category => {
       const button = document.createElement("button");
       button.innerText = category;
-      button.className = "bg-blue-500 text-white py-2 px-4 rounded";
+      button.className = "bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-all";
       button.addEventListener("click", () => {
         selectedCategory = category;
         startQuiz();
@@ -55,13 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function shuffleQuestions(questions) {
     return shuffleArray(questions);
   }
-
+  
   function startQuiz() {
     if (!categories[selectedCategory]) {
       console.error("Selected category does not exist.");
       return;
     }
-    // Shuffle a copy of the questions array
     categories[selectedCategory] = shuffleQuestions([...categories[selectedCategory]]);
     quizContainer.classList.add("hidden");
     questionContainer.classList.remove("hidden");
@@ -82,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
       homeButton.innerText = "Restart";
       return;
     }
-
     const questionData = categories[selectedCategory][currentQuestionIndex];
     questionContainer.querySelector("h2").innerText = questionData.question;
 
+    // Handle optional image
     if (questionData.image) {
       questionImage.src = questionData.image;
       questionImage.classList.remove("hidden");
@@ -94,17 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
       questionImage.src = "";
     }
 
-    // Hide Explanation box & button at start of each question
+    // Reset explanation and feedback
     explanationBox.style.display = "none";
     explanationButton.classList.add("hidden");
     explanationBox.innerText = questionData.explanation || "No explanation available.";
     feedback.classList.add("hidden");
     feedback.innerText = "";
+
+    // Update option buttons: set default neutral green
     const buttons = questionContainer.querySelectorAll(".grid button");
     buttons.forEach((btn, index) => {
       btn.disabled = false;
       btn.innerText = questionData.options[index] || "";
-      btn.classList.remove("bg-green-500", "bg-red-500");
+      // Instead of removing and adding multiple classes, we reset the className
+      btn.className = "bg-green-400 text-white py-2 px-4 rounded";
       btn.onclick = () => checkAnswer(btn, questionData.options[index]);
     });
   }
@@ -115,14 +106,15 @@ document.addEventListener("DOMContentLoaded", function () {
       feedback.innerText = "Correct!";
       feedback.classList.remove("hidden", "text-red-500");
       feedback.classList.add("text-green-500");
-      button.classList.add("bg-green-500");
+      // Transition from neutral green to Next Question green
+      button.className = button.className.replace("bg-green-400", "bg-green-500");
       nextButton.classList.remove("hidden");
       score++;
     } else {
       feedback.innerText = `Incorrect. The correct answer is ${questionData.answer}.`;
       feedback.classList.remove("hidden", "text-green-500");
       feedback.classList.add("text-red-500");
-      button.classList.add("bg-red-500");
+      button.className = button.className.replace("bg-green-400", "bg-red-500");
       nextButton.classList.add("hidden");
     }
     if (questionData.explanation) {
@@ -130,16 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Toggle explanation box
   explanationButton.addEventListener("click", () => {
-    if (explanationBox.style.display === "none") {
-      explanationBox.style.display = "block";
-    } else {
-      explanationBox.style.display = "none";
-    }
+    explanationBox.style.display = (explanationBox.style.display === "none") ? "block" : "none";
   });
 
-  // Next question
   nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     nextButton.classList.add("hidden");
@@ -147,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showQuestion();
   });
 
-  // Home (restart)
   homeButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
