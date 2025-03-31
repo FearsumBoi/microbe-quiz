@@ -44,12 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-function shuffleQuestions(questions) {
-    for (let i = questions.length - 1; i > 0; i--) {
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [questions[i], questions[j]] = [questions[j], questions[i]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
-    return questions;
+    return array;
+  }
+
+  function shuffleQuestions(questions) {
+    return shuffleArray(questions);
   }
 
   function startQuiz() {
