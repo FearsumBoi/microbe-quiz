@@ -11,7 +11,18 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col bg-white text-gray-900" style="font-family: 'Roboto', sans-serif;">
+<body class="min-h-screen flex flex-col bg-white text-gray-900" style="font-family: 'Spline Sans Mono', sans-serif;">
+
+  <style>
+    body {
+      font-family: 'Spline Sans Mono', monospace;
+    }
+  </style>
+  <style>
+    .custom-font {
+      font-family: 'roboto', monospace;
+    }
+  </style>  
 
   <!-- Top Bar (tagline) -->
   <div class="bg-green-200 text-sm py-2 text-center">
@@ -47,7 +58,7 @@
       <!-- Right: Navigation -->
       <div class="flex space-x-7">
         <div>
-          <a href="index.html" class="hover:text-gray-700">Home</a>
+          <a href="index.html" class="hover:text-gray-700 body">Home</a>
         </div>
         <div>
           <a href="about.html" class="hover:text-gray-700">About</a>
@@ -77,7 +88,7 @@
 
     <!-- Question Container -->
     <div id="question-container" class="enhanced-container hidden w-full max-w-lg p-6 text-center shadow-lg">
-      <h2 class="text-2xl font-bold mb-6">Question</h2>
+      <h2 class="text-2xl font-bold mb-6 cust">Question</h2>
       <img 
         id="question-image" 
         src="" 
