@@ -20,9 +20,30 @@
     .custom-font {
       font-family: 'roboto', monospace;
     }
-  </style>  
-  
-<style>html{ scroll-behavior: smooth; }</style>
+  </style>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+  <!-- Custom 3D Button Styling -->
+  <style>
+    .btn-3d-blue {
+      background: linear-gradient(to bottom, #3b82f5, #1E3A8A);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .btn-3d-green {
+      background: linear-gradient(to bottom, #34D399, #059669);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .btn-3d-red {
+      background: linear-gradient(to bottom, #F87171, #B91C1C);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .btn-3d-purple {
+      background: linear-gradient(to bottom, #A78BFA, #6D28D9);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
 <body class="bg-slate-100 text-gray-900 min-h-screen flex flex-col">
   <!-- Top Bar (tagline) -->
   <div class="bg-blue-200 text-sm py-2 text-center custom-font">
@@ -56,7 +77,7 @@
         <span class="text-2xl font-bold custom-font">SciOlympiad Quiz</span>
       </div>
 
-      <!-- Right: Start Quiz Button -->
+      <!-- Right: Navigation Links -->
       <div class="flex space-x-7">
         <div>
           <a href="index.html" class="hover:text-gray-700">Home</a>
@@ -68,7 +89,7 @@
           <a href="resource.html" class="hover:text-gray-700">Resource</a>
         </div>
       </div>
-      
+    </div>
   </header>
 
   <!-- Main Hero Section -->
@@ -85,7 +106,7 @@
         <path d="M12,4.36V20.59a1.92,1.92,0,0,1-1.91,1.91,
                  1.93,1.93,0,0,1-1.91-1.91v0a2.45,2.45,0,0,1-.48,0,
                  3.35,3.35,0,0,1-3.34-3.34,3.19,3.19,0,0,1,.08-.7A4.29,
-                 4.29,0,0,1,3.6,8.79,3.24,3.24,0,0,1,3.41,7.7,
+                 4.29,0,0,1,3.6,8.79A3.24,3.24,0,0,1,3.41,7.7,
                  3.34,3.34,0,0,1,6.27,4.4v0a2.87,2.87,0,0,1,5.73,0Z" />
         <path d="M6.75,11.05a3.35,3.35,0,0,1,0-6.69" />
         <path d="M8.18,13.91h0A3.82,3.82,0,0,1,12,17.73h0" />
@@ -112,7 +133,7 @@
       and interactive study tools.
     </p>
 
-    <!-- Button -> leads to bottom page (microbe.html) -->
+    <!-- Button to scroll to events section -->
     <button
       class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700"
       onclick="document.getElementById('event-section').scrollIntoView({ behavior: 'smooth' });"
@@ -127,23 +148,22 @@
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
         Explore Our Science Events
       </h2>
-      <!-- Grid of large buttons -->
+      <!-- Grid of large 3D-styled buttons -->
       <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-        <!-- Each button leads to a page for that event -->
         <a href="microbe.html"
-           class="bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 flex items-center justify-center text-center text-xl aspect-square">
+           class="btn-3d-blue text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
           Microbe Mission
         </a>
         <a href="main.html"
-           class="bg-green-500 text-white font-semibold rounded-md shadow hover:bg-green-600 flex items-center justify-center text-center text-xl aspect-square">
+           class="btn-3d-green text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
           Forensics
         </a>
         <a href="anatomy.html"
-           class="bg-red-500 text-white font-semibold rounded-md shadow hover:bg-red-600 flex items-center justify-center text-center text-xl aspect-square">
+           class="btn-3d-red text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
           Anatomy &amp; Physiology
         </a>
-        <a href="codebusters.html"
-           class="bg-purple-500 text-white font-semibold rounded-md shadow hover:bg-purple-600 flex items-center justify-center text-center text-xl aspect-square">
+        <a href="https://cryptograms.puzzlebaron.com/"
+           class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
           Codebusters
         </a>
       </div>
