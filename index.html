@@ -26,6 +26,10 @@
       background: linear-gradient(to bottom, #3b82f5, #1E3A8A);
       box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
     }
+    .btn-3d-blue200 {
+      background: linear-gradient(to bottom, #9ea4ca, #6d91b4);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    }  
     .btn-3d-green {
       background: linear-gradient(to bottom, #34D399, #059669);
       box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -46,13 +50,13 @@
   <!-- FIXED WRAPPER for Tagline + Header -->
   <div class="fixed top-0 left-0 w-full z-50">
     <!-- Top Bar (tagline) -->
-    <div class="bg-blue-200 text-sm py-2 text-center custom-font flex justify-center items-center space-x-1">
+    <div class="bg-gray-200 text-sm py-2 text-center custom-font flex justify-center items-center space-x-1">
       <span class="material-icons">science</span>
       <span>Explore science events with quizzes</span>
     </div>
 
     <!-- Header / Nav -->
-    <header class="bg-blue-300">
+    <header class="bg-gray-400">
       <div class="max-w-screen-xl mx-auto px-4 py-5 flex items-center justify-between">
         <!-- Left: Logo + Title -->
         <div class="flex items-center space-x-2">
@@ -113,7 +117,7 @@
     <!-- Main Hero Section -->
     <main class="flex-grow flex flex-col items-center justify-center text-center py-24 px-4">
       <!-- Custom brain icon -->
-      <svg class="w-48 h-48 text-gray-800 mb-6"
+      <svg class="w-52 h-52 text-gray-800 mb-6"
            viewBox="0 0 24 24"
            xmlns="http://www.w3.org/2000/svg"
            fill="none"
@@ -142,22 +146,26 @@
         </g>
       </svg>
 
-      <h1 class="text-3xl sm:text-5xl font-bold mb-4">
-        SciOlympiad Quiz<br class="hidden sm:block"/> 
-      </h1>
-      <p class="text-lg text-gray-700 mb-8 max-w-2xl custom-font">
-        Prepare for your next Science Olympiad event with engaging quizzes 
-        and interactive study tools.
-      </p>
+<!-- New "What is SciOlympiad Quiz?" section, also left-aligned -->
+<div class="my-8 text-left max-w-3xl">
+  <h1 class="text-3xl sm:text-4xl font-bold mb-6 custom-font">
+    What is SciOlympiad Quiz?
+  </h2>
+  <p class="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 custom-font">
+    SciOlympiad Quiz is a platform dedicated to helping Science Olympiad participants 
+    and enthusiasts enhance their knowledge through interactive quizzes.
 
-      <!-- Button to scroll to events section with arrow icon -->
-      <button
-        class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700 flex items-center justify-center space-x-2"
-        onclick="document.getElementById('event-section').scrollIntoView({ behavior: 'smooth' });"
-      >
-        <span>Select topic</span>
-        <span class="material-icons">arrow_downward</span>
-      </button>
+    With a simple design, you can easily focus on learning, explore different science topics,
+and prepare effectively for competitions—one quiz at a time.
+  </p>
+  <a 
+    href="#event-section"
+    class="inline-block bg-blue-600 text-white py-3 px-6 rounded-full 
+           text-base sm:text-lg hover:bg-blue-700 transition">
+    Explore Our Events
+  </a>
+</div>
+  
     </main>
 
     <!-- NEW SECTION: Large Event Buttons -->
@@ -187,6 +195,11 @@
              class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
             <span class="material-icons text-3xl">code</span>
             <span>Codebusters</span>
+          </a>
+          <a href="matsci.html"
+             class="btn-3d-blue200 text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+            <span class="material-icons text-3xl">code</span>
+            <span>Material Science</span>
           </a>
         </div>
       </div>
