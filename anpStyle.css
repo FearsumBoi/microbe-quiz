@@ -1,0 +1,81 @@
+/* anpStyle.css */
+
+/* Container transitions for question display */
+#question-container {
+    transition: all 0.5s ease-in-out;
+    transform: scale(0);
+    opacity: 0;
+    display: block;
+  }
+  /* Active state: fade/scale in effect */
+  #question-container.active {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  /* Explanation box styling */
+  #explanation-container {
+    display: none;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Button hover animations */
+  button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Enhanced visuals for containers */
+  body {
+    background: linear-gradient(to bottom right, #ffe5e5, #ffcccc);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .main-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .main-title svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+  }
+  
+  #quiz-container, #question-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+  }
+  
+  .enhanced-container {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+  }
+  
+  #category-buttons button {
+    background-color: rgb(197, 110, 110);
+    border: 2px solid transparent;
+    font-weight: 600;
+  }
+  #category-buttons button:hover {
+    border-color: hwb(0 20% 40%);
+    background-color: #ffffff;
+    color: #fca5a5;
+  }
+  
+  #feedback {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+  
