@@ -10,21 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Spline Sans Mono', monospace;
     }
-  </style>
-  <style>
     .custom-font {
       font-family: 'roboto', monospace;
     }
-  </style>
-  <style>
-    html { scroll-behavior: smooth; }
-  </style>
-  <!-- Custom 3D Button Styling -->
-  <style>
+    html { 
+      scroll-behavior: smooth; 
+    }
+    /* Custom 3D Button Styling */
     .btn-3d-blue {
       background: linear-gradient(to bottom, #3b82f5, #1E3A8A);
       box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -43,157 +40,158 @@
     }
   </style>
 </head>
-<body class="bg-slate-100 text-gray-900 min-h-screen flex flex-col">
-  <!-- Top Bar (tagline) -->
-  <div class="bg-blue-200 text-sm py-2 text-center custom-font flex justify-center items-center space-x-1">
-    <span class="material-icons">science</span>
-    <span>Explore science events with quizzes</span>
-  </div>
 
-  <!-- Header / Nav -->
-  <header class="bg-blue-300">
-    <div class="max-w-screen-xl mx-auto px-4 py-5 flex items-center justify-between">
-      <!-- Left: Logo + Title -->
-      <div class="flex items-center space-x-2">
-        <!-- New beaker icon -->
-        <svg class="w-8 h-8 text-gray-800"
-             viewBox="-2.4 -2.4 28.80 28.80"
-             fill="none"
-             xmlns="http://www.w3.org/2000/svg"
-             stroke="#000000"
-             stroke-width="0.00024">
-          <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
-            <path transform="translate(-2.4, -2.4), scale(1.8)"
-                  fill="#ffffff"
-                  d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z">
-            </path>
-          </g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path d="M8 4.5H8.99998V10.7382C8.99998 11.1132 8.90628 11.4822 8.72739 11.8117L5.14269 18.415C4.50968 19.5811 5.35388 20.9999 6.68068 20.9999H17.3193C18.6461 20.9999 19.4903 19.5811 18.8573 18.415L15.2726 11.8117C15.0937 11.4822 15 11.1132 15 10.7382V4.5H16C16.4142 4.5 16.75 4.16421 16.75 3.75C16.75 3.33579 16.4142 3 16 3H8C7.58579 3 7.25 3.33579 7.25 3.75C7.25 4.16421 7.58579 4.5 8 4.5ZM10.5 10.7382V4.5H13.5V10.7382C13.5 11.3631 13.6561 11.9781 13.9543 12.5273L14.7537 14H9.24621L10.0457 12.5273C10.3438 11.9781 10.5 11.3631 10.5 10.7382ZM8.43192 15.5H15.568L17.539 19.1307C17.6294 19.2973 17.5088 19.4999 17.3193 19.4999H6.68068C6.49114 19.4999 6.37054 19.2973 6.46097 19.1307L8.43192 15.5Z"
-                  fill="#212121"></path>
-          </g>
-        </svg>
-        <span class="text-2xl font-bold custom-font">SciOlympiad Quiz</span>
-      </div>
+<body class="bg-slate-100 text-gray-900 min-h-screen">
 
-      <!-- Right: Navigation Links -->
-      <div class="flex space-x-7">
-        <div>
+  <!-- FIXED WRAPPER for Tagline + Header -->
+  <div class="fixed top-0 left-0 w-full z-50">
+    <!-- Top Bar (tagline) -->
+    <div class="bg-blue-200 text-sm py-2 text-center custom-font flex justify-center items-center space-x-1">
+      <span class="material-icons">science</span>
+      <span>Explore science events with quizzes</span>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="bg-blue-300">
+      <div class="max-w-screen-xl mx-auto px-4 py-5 flex items-center justify-between">
+        <!-- Left: Logo + Title -->
+        <div class="flex items-center space-x-2">
+          <!-- New beaker icon -->
+          <svg class="w-8 h-8 text-gray-800"
+               viewBox="-2.4 -2.4 28.80 28.80"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg"
+               stroke="#000000"
+               stroke-width="0.00024">
+            <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+              <path transform="translate(-2.4, -2.4), scale(1.8)"
+                    fill="#ffffff"
+                    d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z">
+              </path>
+            </g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M8 4.5H8.99998V10.7382C8.99998 11.1132 8.90628 11.4822 8.72739 11.8117L5.14269 18.415C4.50968 19.5811 5.35388 20.9999 6.68068 20.9999H17.3193C18.6461 20.9999 19.4903 19.5811 18.8573 18.415L15.2726 11.8117C15.0937 11.4822 15 11.1132 15 10.7382V4.5H16C16.4142 4.5 16.75 4.16421 16.75 3.75C16.75 3.33579 16.4142 3 16 3H8C7.58579 3 7.25 3.33579 7.25 3.75C7.25 4.16421 7.58579 4.5 8 4.5ZM10.5 10.7382V4.5H13.5V10.7382C13.5 11.3631 13.6561 11.9781 13.9543 12.5273L14.7537 14H9.24621L10.0457 12.5273C10.3438 11.9781 10.5 11.3631 10.5 10.7382ZM8.43192 15.5H15.568L17.539 19.1307C17.6294 19.2973 17.5088 19.4999 17.3193 19.4999H6.68068C6.49114 19.4999 6.37054 19.2973 6.46097 19.1307L8.43192 15.5Z"
+                    fill="#212121"></path>
+            </g>
+          </svg>
+          <span class="text-2xl font-bold custom-font">SciOlympiad Quiz</span>
+        </div>
+
+        <!-- Right: Navigation Links -->
+        <div class="flex space-x-7">
           <a href="index.html" class="hover:text-gray-700 flex items-center">
             <span class="material-icons mr-1">home</span>Home
           </a>
-        </div>
-        <div>
           <a href="about.html" class="hover:text-gray-700 flex items-center">
             <span class="material-icons mr-1">info</span>About
           </a>
-        </div>
-        <div>
           <a href="resource.html" class="hover:text-gray-700 flex items-center">
             <span class="material-icons mr-1">book</span>Resource
           </a>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
+  <!-- END fixed wrapper -->
 
-  <!-- New Promotional Section -->
-  <section id="promo" class="relative bg-cover bg-center min-h-screen" style="background-image: url('bg.png');">
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-  
-    <!-- Content -->
-    <div class="relative max-w-screen-xl mx-auto px-4 py-32 text-center text-white">
-      <h2 class="text-7xl font-bold mb-4 py-8 custom-font">Welcome to SciOlympiad Quiz</h2>
-      <p class="text-xl mb-6 py-8 custom-font">Discover engaging quizzes and boost your science knowledge.</p>
-      <a href="#event-section" class="bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-full transition">Get Started</a>
-    </div>
-  </section>
-  
-
-  <!-- Main Hero Section -->
-  <main class="flex-grow flex flex-col items-center justify-center text-center py-24 px-4">
-    <!-- Custom brain icon -->
-    <svg class="w-48 h-48 text-gray-800 mb-6"
-         viewBox="0 0 24 24"
-         xmlns="http://www.w3.org/2000/svg"
-         fill="none"
-         stroke="currentColor"
-         stroke-linecap="round"
-         stroke-linejoin="round">
-      <g stroke="#000" stroke-width="0.984" stroke-miterlimit="10"> 
-        <path d="M12,4.36V20.59a1.92,1.92,0,0,1-1.91,1.91,
-                 1.93,1.93,0,0,1-1.91-1.91v0a2.45,2.45,0,0,1-.48,0,
-                 3.35,3.35,0,0,1-3.34-3.34,3.19,3.19,0,0,1,.08-.7A4.29,
-                 4.29,0,0,1,3.6,8.79A3.24,3.24,0,0,1,3.41,7.7,
-                 3.34,3.34,0,0,1,6.27,4.4v0a2.87,2.87,0,0,1,5.73,0Z" />
-        <path d="M6.75,11.05a3.35,3.35,0,0,1,0-6.69" />
-        <path d="M8.18,13.91h0A3.82,3.82,0,0,1,12,17.73h0" />
-        <path d="M9.14,7.23h0A2.86,2.86,0,0,0,12,4.36h0" />
-      </g>
-      <g stroke="#000" stroke-width="0.984" stroke-miterlimit="10">
-        <path d="M12,4.36V20.59a1.92,1.92,0,0,0,1.91,1.91,
-                 1.93,1.93,0,0,0,1.91-1.91v0a2.45,2.45,0,0,0,.48,0,
-                 3.35,3.35,0,0,0,3.34-3.34,3.19,3.19,0,0,0-.08-.7,
-                 4.29,4.29,0,0,0,.84-7.76,3.24,3.24,0,0,0,.19-1.09,
-                 3.34,3.34,0,0,0-2.86-3.3v0a2.87,2.87,0,0,0-5.73,0Z" />
-        <path d="M17.25,11.05a3.35,3.35,0,0,0,0-6.69" />
-        <path d="M15.82,13.91h0A3.82,3.82,0,0,0,12,17.73h0" />
-        <path d="M14.86,7.23h0A2.86,2.86,0,0,1,12,4.36h0" />
-      </g>
-    </svg>
-
-    <h1 class="text-3xl sm:text-5xl font-bold mb-4">
-      SciOlympiad Quiz<br class="hidden sm:block"/> 
-    </h1>
-    <p class="text-lg text-gray-700 mb-8 max-w-2xl custom-font">
-      Prepare for your next Science Olympiad event with engaging quizzes 
-      and interactive study tools.
-    </p>
-
-    <!-- Button to scroll to events section with arrow icon -->
-    <button
-      class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700 flex items-center justify-center space-x-2"
-      onclick="document.getElementById('event-section').scrollIntoView({ behavior: 'smooth' });"
-    >
-      <span>Select topic</span>
-      <span class="material-icons">arrow_downward</span>
-    </button>
-  </main>
-
-  <!-- NEW SECTION: Large Event Buttons -->
-  <section id="event-section" class="bg-white py-24 mt-16">
-    <div class="max-w-screen-xl mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
-        Explore Our Science Events
-      </h2>
-      <!-- Grid of large 3D-styled buttons with icons -->
-      <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-        <a href="microbe.html"
-           class="btn-3d-blue text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
-          <span class="material-icons text-3xl">bug_report</span>
-          <span>Microbe Mission</span>
-        </a>
-        <a href="main.html"
-           class="btn-3d-green text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
-          <span class="material-icons text-3xl">fingerprint</span>
-          <span>Forensics</span>
-        </a>
-        <a href="anp.html"
-           class="btn-3d-red text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
-          <span class="material-icons text-3xl">accessibility</span>
-          <span>Anatomy &amp; Physiology</span>
-        </a>
-        <a href="https://cryptograms.puzzlebaron.com/"
-           class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
-          <span class="material-icons text-3xl">code</span>
-          <span>Codebusters</span>
-        </a>
+  <!-- ADD TOP MARGIN so content doesn't hide behind fixed bars -->
+  <div class="mt-28">
+    <!-- New Promotional Section -->
+    <section id="promo" class="relative bg-cover bg-center min-h-screen" style="background-image: url('bg.png');">
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    
+      <!-- Content -->
+      <div class="relative max-w-screen-xl mx-auto px-4 py-32 text-center text-white">
+        <h2 class="text-7xl font-bold mb-4 py-8 custom-font">Welcome to SciOlympiad Quiz</h2>
+        <p class="text-xl mb-6 py-8 custom-font">Discover engaging quizzes and boost your science knowledge.</p>
+        <a href="#event-section" class="bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-full transition">Get Started</a>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- Main Hero Section -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center py-24 px-4">
+      <!-- Custom brain icon -->
+      <svg class="w-48 h-48 text-gray-800 mb-6"
+           viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg"
+           fill="none"
+           stroke="currentColor"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <g stroke="#000" stroke-width="0.984" stroke-miterlimit="10"> 
+          <path d="M12,4.36V20.59a1.92,1.92,0,0,1-1.91,1.91,
+                   1.93,1.93,0,0,1-1.91-1.91v0a2.45,2.45,0,0,1-.48,0,
+                   3.35,3.35,0,0,1-3.34-3.34,3.19,3.19,0,0,1,.08-.7A4.29,
+                   4.29,0,0,1,3.6,8.79A3.24,3.24,0,0,1,3.41,7.7,
+                   3.34,3.34,0,0,1,6.27,4.4v0a2.87,2.87,0,0,1,5.73,0Z" />
+          <path d="M6.75,11.05a3.35,3.35,0,0,1,0-6.69" />
+          <path d="M8.18,13.91h0A3.82,3.82,0,0,1,12,17.73h0" />
+          <path d="M9.14,7.23h0A2.86,2.86,0,0,0,12,4.36h0" />
+        </g>
+        <g stroke="#000" stroke-width="0.984" stroke-miterlimit="10">
+          <path d="M12,4.36V20.59a1.92,1.92,0,0,0,1.91,1.91,
+                   1.93,1.93,0,0,0,1.91-1.91v0a2.45,2.45,0,0,0,.48,0,
+                   3.35,3.35,0,0,0,3.34-3.34,3.19,3.19,0,0,0-.08-.7,
+                   4.29,4.29,0,0,0,.84-7.76,3.24,3.24,0,0,0,.19-1.09,
+                   3.34,3.34,0,0,0-2.86-3.3v0a2.87,2.87,0,0,0-5.73,0Z" />
+          <path d="M17.25,11.05a3.35,3.35,0,0,0,0-6.69" />
+          <path d="M15.82,13.91h0A3.82,3.82,0,0,0,12,17.73h0" />
+          <path d="M14.86,7.23h0A2.86,2.86,0,0,1,12,4.36h0" />
+        </g>
+      </svg>
+
+      <h1 class="text-3xl sm:text-5xl font-bold mb-4">
+        SciOlympiad Quiz<br class="hidden sm:block"/> 
+      </h1>
+      <p class="text-lg text-gray-700 mb-8 max-w-2xl custom-font">
+        Prepare for your next Science Olympiad event with engaging quizzes 
+        and interactive study tools.
+      </p>
+
+      <!-- Button to scroll to events section with arrow icon -->
+      <button
+        class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700 flex items-center justify-center space-x-2"
+        onclick="document.getElementById('event-section').scrollIntoView({ behavior: 'smooth' });"
+      >
+        <span>Select topic</span>
+        <span class="material-icons">arrow_downward</span>
+      </button>
+    </main>
+
+    <!-- NEW SECTION: Large Event Buttons -->
+    <section id="event-section" class="bg-white py-24 mt-16">
+      <div class="max-w-screen-xl mx-auto px-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
+          Explore Our Science Events
+        </h2>
+        <!-- Grid of large 3D-styled buttons with icons -->
+        <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+          <a href="microbe.html"
+             class="btn-3d-blue text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+            <span class="material-icons text-3xl">bug_report</span>
+            <span>Microbe Mission</span>
+          </a>
+          <a href="main.html"
+             class="btn-3d-green text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+            <span class="material-icons text-3xl">fingerprint</span>
+            <span>Forensics</span>
+          </a>
+          <a href="anp.html"
+             class="btn-3d-red text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+            <span class="material-icons text-3xl">accessibility</span>
+            <span>Anatomy &amp; Physiology</span>
+          </a>
+          <a href="https://cryptograms.puzzlebaron.com/"
+             class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+            <span class="material-icons text-3xl">code</span>
+            <span>Codebusters</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
   <!-- Footer (optional) -->
   <footer class="bg-blue-100 text-center py-3 text-sm text-gray-600">
     <span>&copy; 2025 SciOlympiad Quiz</span>
