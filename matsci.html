@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SciOlympiad Quiz - Material Science</title>
+  
+  <!-- Roboto Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="materialStyle.css">
+
+  <!-- Inline font override (optional) -->
+  <style>
+    body {
+      font-family: 'Spline Sans Mono', monospace;
+    }
+    .custom-font {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 custom-font">
+
+  <!-- Top Bar (tagline) -->
+  <div class="bg-indigo-400 text-sm py-2 text-center text-white">
+    Explore Material Science with Quizzes
+  </div>
+
+  <!-- Header -->
+  <header class="bg-indigo-500">
+    <div class="max-w-screen-xl mx-auto px-4 py-5 flex items-center justify-between">
+      <!-- Left: Logo + Title -->
+      <div class="flex items-center space-x-2">
+        <svg class="w-8 h-8 text-white"
+             viewBox="-2.4 -2.4 28.80 28.80"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg"
+             stroke="#000000"
+             stroke-width="0.00024">
+          <g stroke-width="0" transform="translate(0,0) scale(1)">
+            <path transform="translate(-2.4, -2.4) scale(1.8)"
+                  fill="#ffffff"
+                  d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z">
+            </path>
+          </g>
+          <g stroke-linecap="round" stroke-linejoin="round"></g>
+          <g>
+            <path d="M8 4.5H8.99998V10.7382C8.99998 11.1132 8.90628 11.4822 8.72739 11.8117L5.14269 18.415C4.50968 19.5811 5.35388 20.9999 6.68068 20.9999H17.3193C18.6461 20.9999 19.4903 19.5811 18.8573 18.415L15.2726 11.8117C15.0937 11.4822 15 11.1132 15 10.7382V4.5H16C16.4142 4.5 16.75 4.16421 16.75 3.75C16.75 3.33579 16.4142 3 16 3H8C7.58579 3 7.25 3.33579 7.25 3.75C7.25 4.16421 7.58579 4.5 8 4.5ZM10.5 10.7382V4.5H13.5V10.7382C13.5 11.3631 13.6561 11.9781 13.9543 12.5273L14.7537 14H9.24621L10.0457 12.5273C10.3438 11.9781 10.5 11.3631 10.5 10.7382ZM8.43192 15.5H15.568L17.539 19.1307C17.6294 19.2973 17.5088 19.4999 17.3193 19.4999H6.68068C6.49114 19.4999 6.37054 19.2973 6.46097 19.1307L8.43192 15.5Z"
+                  fill="#212121">
+            </path>
+          </g>
+        </svg>
+        <span class="text-2xl text-white font-bold">SciOlympiad Quiz</span>
+      </div>
+      <!-- Right: Nav -->
+      <nav class="flex space-x-7">
+        <a href="index.html" class="hover:text-gray-50 flex items-center text-white">
+          <span class="material-icons mr-1">home</span>Home
+        </a>
+        <a href="about.html" class="hover:text-gray-50 flex items-center text-white">
+          <span class="material-icons mr-1">info</span>About
+        </a>
+        <a href="resource.html" class="hover:text-gray-50 flex items-center text-white">
+          <span class="material-icons mr-1">book</span>Resource
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / FEATURED SECTION -->
+  <section class="text-center py-8 bg-slate-50">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 text-slate-800">Material Science Quiz</h2>
+      <p class="text-lg text-slate-700">
+        Prepare for bonding, crystal structures, and more!
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow flex flex-col items-center py-8 px-4">
+    <!-- Quiz Container -->
+    <div id="quiz-container"
+         class="enhanced-container w-full max-w-lg p-6 text-center shadow-lg mb-6 bg-white rounded">
+      <h2 class="text-xl font-bold mb-4 text-slate-800">Select a Category</h2>
+      <div id="category-buttons" class="grid gap-3"></div>
+    </div>
+
+    <!-- Question Container -->
+    <div id="question-container"
+         class="enhanced-container hidden w-full max-w-lg p-6 text-center shadow-lg bg-white rounded">
+      <h2 class="text-2xl font-bold mb-6 text-slate-800">Question</h2>
+      <img id="question-image" src="" alt="Question Image"
+           class="hidden w-full max-w-sm mx-auto mb-4 rounded">
+      <div class="grid gap-2">
+        <button class="bg-indigo-400 text-white py-2 px-4 rounded">Option 1</button>
+        <button class="bg-indigo-400 text-white py-2 px-4 rounded">Option 2</button>
+        <button class="bg-indigo-400 text-white py-2 px-4 rounded">Option 3</button>
+        <button class="bg-indigo-400 text-white py-2 px-4 rounded">Option 4</button>
+      </div>
+      <div id="feedback" class="hidden text-center mt-4"></div>
+      <div id="explanation-container"></div>
+      <button id="explanation-button" class="hidden bg-slate-400 text-white py-2 px-4 rounded mt-4">
+        Show Explanation
+      </button>
+      <button id="next-button" class="hidden bg-green-500 text-white py-2 px-4 rounded mt-4">
+        Next Question
+      </button>
+      <button id="home-button" class="hidden bg-indigo-300 text-white py-2 px-4 rounded mt-4">
+        Home
+      </button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-50 py-4 text-center text-slate-700">
+    <p class="text-sm">&copy; 2025 SciOlympiad Quiz - Material Science</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="matscidataquiz.js"></script>
+  <script src="matsciquiz.js"></script>
+</body>
+</html>
