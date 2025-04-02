@@ -6,11 +6,13 @@
   <title>SciOlympiadQuiz - Landing</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Optional: Roboto or another font -->
+  <!-- Google Fonts for Roboto -->
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: 'Spline Sans Mono', monospace;
@@ -46,8 +48,9 @@
 </head>
 <body class="bg-slate-100 text-gray-900 min-h-screen flex flex-col">
   <!-- Top Bar (tagline) -->
-  <div class="bg-blue-200 text-sm py-2 text-center custom-font">
-    Explore science events with quizzes
+  <div class="bg-blue-200 text-sm py-2 text-center custom-font flex justify-center items-center space-x-1">
+    <span class="material-icons">science</span>
+    <span>Explore science events with quizzes</span>
   </div>
 
   <!-- Header / Nav -->
@@ -80,13 +83,19 @@
       <!-- Right: Navigation Links -->
       <div class="flex space-x-7">
         <div>
-          <a href="index.html" class="hover:text-gray-700">Home</a>
+          <a href="index.html" class="hover:text-gray-700 flex items-center">
+            <span class="material-icons mr-1">home</span>Home
+          </a>
         </div>
         <div>
-          <a href="about.html" class="hover:text-gray-700">About</a>
+          <a href="about.html" class="hover:text-gray-700 flex items-center">
+            <span class="material-icons mr-1">info</span>About
+          </a>
         </div>
         <div>
-          <a href="resource.html" class="hover:text-gray-700">Resource</a>
+          <a href="resource.html" class="hover:text-gray-700 flex items-center">
+            <span class="material-icons mr-1">book</span>Resource
+          </a>
         </div>
       </div>
     </div>
@@ -125,20 +134,20 @@
     </svg>
 
     <h1 class="text-3xl sm:text-5xl font-bold mb-4">
-      Enhance your knowledge <br class="hidden sm:block"/> 
-      and ace the competition
+      SciOlympiad Quiz<br class="hidden sm:block"/> 
     </h1>
     <p class="text-lg text-gray-700 mb-8 max-w-2xl custom-font">
       Prepare for your next Science Olympiad event with engaging quizzes 
       and interactive study tools.
     </p>
 
-    <!-- Button to scroll to events section -->
+    <!-- Button to scroll to events section with arrow icon -->
     <button
-      class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700"
+      class="bg-gray-900 text-white rounded-md px-6 py-3 hover:bg-gray-700 flex items-center justify-center space-x-2"
       onclick="document.getElementById('event-section').scrollIntoView({ behavior: 'smooth' });"
     >
-      Select topic
+      <span>Select topic</span>
+      <span class="material-icons">arrow_downward</span>
     </button>
   </main>
 
@@ -148,23 +157,27 @@
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">
         Explore Our Science Events
       </h2>
-      <!-- Grid of large 3D-styled buttons -->
+      <!-- Grid of large 3D-styled buttons with icons -->
       <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
         <a href="microbe.html"
-           class="btn-3d-blue text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
-          Microbe Mission
+           class="btn-3d-blue text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+          <span class="material-icons text-3xl">bug_report</span>
+          <span>Microbe Mission</span>
         </a>
         <a href="main.html"
-           class="btn-3d-green text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
-          Forensics
+           class="btn-3d-green text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+          <span class="material-icons text-3xl">fingerprint</span>
+          <span>Forensics</span>
         </a>
         <a href="anatomy.html"
-           class="btn-3d-red text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
-          Anatomy &amp; Physiology
+           class="btn-3d-red text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+          <span class="material-icons text-3xl">accessibility</span>
+          <span>Anatomy &amp; Physiology</span>
         </a>
         <a href="https://cryptograms.puzzlebaron.com/"
-           class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex items-center justify-center text-center text-xl aspect-square">
-          Codebusters
+           class="btn-3d-purple text-white font-semibold rounded-md transition transform hover:-translate-y-1 flex flex-col items-center justify-center text-center text-xl aspect-square">
+          <span class="material-icons text-3xl">code</span>
+          <span>Codebusters</span>
         </a>
       </div>
     </div>
@@ -172,7 +185,7 @@
 
   <!-- Footer (optional) -->
   <footer class="bg-blue-100 text-center py-3 text-sm text-gray-600">
-    &copy; 2025 SciOlympiad Quiz
+    <span>&copy; 2025 SciOlympiad Quiz</span>
   </footer>
 </body>
 </html>
