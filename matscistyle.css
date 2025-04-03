@@ -2,69 +2,69 @@
 
 /* Light container with a subtle effect */
 .enhanced-container {
-    backdrop-filter: blur(6px);
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* Fade/scale effect for question container */
-  #question-container {
-    transition: all 0.5s ease-in-out;
-    transform: scale(0);
-    opacity: 0;
-    display: block;
-  }
-  #question-container.active {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  /* Explanation box styling */
-  #explanation-container {
-    display: none;
-    margin-top: 1rem;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(5px);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Button hover animations */
-  button {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  button:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Category buttons with a subtle border */
-  #category-buttons button {
-    border: 2px solid transparent;
-    font-weight: 600;
-  }
-  #category-buttons button:hover {
-    border-color: #b5bad5;
-    background-color: #ffffff;
-    color: #7380aa;
-  }
-  
-  /* Feedback styling */
-  #feedback {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 1rem;
-  }
-  
-  /* Correct/incorrect feedback colors */
-  .text-green-400 {
-    color: #4ade80 !important; /* a pastel green for 'correct' */
-  }
-  .text-red-400 {
-    color: #f87171 !important; /* a pastel red for 'incorrect' */
-  }
-  
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Fade/scale effect for question container */
+#question-container {
+  transition: all 0.5s ease-in-out;
+  transform: scale(0);
+  opacity: 0;
+  display: block;
+}
+#question-container.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Explanation box styling */
+#explanation-container {
+  display: none;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover animations */
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Category buttons with a subtle border */
+#category-buttons button {
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Ensure smooth transition */
+}
+#category-buttons button:hover {
+  border-color: rgb(134, 143, 241); /* Uniform border color on hover */
+  background-color: #ffffff; /* White background on hover */
+  color: rgb(134, 143, 241); /* Uniform text color on hover */
+}
+
+/* Feedback styling */
+#feedback {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Correct/incorrect feedback colors */
+.text-green-400 {
+  color: #4ade80 !important; /* a pastel green for 'correct' */
+}
+.text-red-400 {
+  color: #f87171 !important; /* a pastel red for 'incorrect' */
+}
