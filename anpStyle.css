@@ -70,7 +70,7 @@
   #category-buttons button:hover {
     border-color: hwb(0 20% 40%);
     background-color: #ffffff;
-    color: #fca5a5;
+    color: hwb(0 20% 40%);
   }
   
   #feedback {
